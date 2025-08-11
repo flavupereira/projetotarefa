@@ -40,14 +40,11 @@ import jakarta.validation.Valid;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-	private final UsuarioApplication usuarioApplication;
 
 	@Autowired
 	UsuarioRepository usuarioRepository;
 
-	UsuarioController(UsuarioApplication usuarioApplication) {
-		this.usuarioApplication = usuarioApplication;
-	}
+	
 
 	@PostMapping
 	@Transactional
@@ -91,7 +88,7 @@ public class UsuarioController {
          return ResponseEntity.notFound().build();
 	}
 
-	@GetMapping("/{id}")
+	@PutMapping("/{id}")
 	@Transactional
 	@CacheEvict(value = "listaDeUsuarios" , allEntries = true)
 	public  ResponseEntity<UsuarioDTO> autializar(@PathVariable Long id ,

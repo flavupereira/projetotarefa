@@ -32,12 +32,32 @@ public class Tarefa {
 	private Boolean concluida = false;
 	
 	@Enumerated(EnumType.STRING)
-	
 	private Prioridade prioridade = Prioridade.MEDIA;
+	
+	private Long userId;
 	
 //    @ManyToOne
 //    @JoinColumn(name = "userId")
 //	private Usuario userId;
+	
+	public Tarefa() {
+		
+	}
+
+	public Tarefa(Long id, String titulo, String descricao2, LocalDateTime dataKimit, Boolean concluida,
+			Prioridade prioridade,Long userId) {
+		
+		this.id = id;
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.dataCriacao = dataCriacao;
+		this.dataKimite = dataKimite;
+		this.concluida = concluida;
+		this.prioridade = prioridade;
+		this.userId = userId;
+		
+		
+	}
 
 	public Long getId() {
 		return id;
