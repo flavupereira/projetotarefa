@@ -1,4 +1,4 @@
-package com.flavio.microservice.config.validacao;
+package com.flavio.microservice.usuario.config.validacao;
 
 public class ErroDeFormularioDto {
 	

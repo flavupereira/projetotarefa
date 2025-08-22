@@ -3,12 +3,13 @@ package com.flavio.microservice.tarefa;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@FeignClient
+@EnableFeignClients(basePackages = "com.flavio.microservice.tarefa.client")
 public class TarefaApplication {
 	
 	@Bean
@@ -17,6 +18,8 @@ public class TarefaApplication {
 		return new RestTemplate();
 		
 	}
+	
+	
 	
 
 	public static void main(String[] args) {

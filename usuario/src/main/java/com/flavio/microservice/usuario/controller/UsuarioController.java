@@ -15,6 +15,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,9 +27,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.flavio.microservice.DTO.AtualizacaoUsuarioForm;
-import com.flavio.microservice.DTO.UsuarioDTO;
-import com.flavio.microservice.DTO.UsuarioForm;
+import com.flavio.microservice.usuario.DTO.AtualizacaoUsuarioForm;
+import com.flavio.microservice.usuario.DTO.UsuarioDTO;
+import com.flavio.microservice.usuario.DTO.UsuarioForm;
 import com.flavio.microservice.usuario.UsuarioApplication;
 import com.flavio.microservice.usuario.model.Usuario;
 import com.flavio.microservice.usuario.repository.UsuarioRepository;
@@ -49,11 +50,11 @@ public class UsuarioController {
 	@PostMapping
 	@Transactional
 	@CacheEvict(value = "listaDeUsuarios" , allEntries = true)
-	public ResponseEntity<UsuarioDTO> cadastrar(@RequestBody @Valid UsuarioForm form, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<UsuarioDTO> cadastrar( @RequestBody  @Valid UsuarioForm form, 
+			                               UriComponentsBuilder uriBuilder) {
+		
 		Usuario usuario = form.converte();
-
 		usuarioRepository.save(usuario);
-
 		URI uri = uriBuilder.path("/usuario/{id}").buildAndExpand(usuario.getId()).toUri();
 
 		return ResponseEntity.created(uri).body(new UsuarioDTO(usuario));

@@ -1,4 +1,4 @@
-package com.flavio.microservice.DTO;
+package com.flavio.microservice.usuario.DTO;
 
 import java.time.LocalDateTime;
 import java.util.List;

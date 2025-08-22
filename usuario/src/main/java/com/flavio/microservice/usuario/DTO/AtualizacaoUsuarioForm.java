@@ -1,10 +1,12 @@
-package com.flavio.microservice.DTO;
+package com.flavio.microservice.usuario.DTO;
 
 import com.flavio.microservice.usuario.model.Usuario;
 import com.flavio.microservice.usuario.repository.UsuarioRepository;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+
+
 
 public class AtualizacaoUsuarioForm {
 

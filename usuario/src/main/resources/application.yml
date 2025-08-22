@@ -1,30 +1,55 @@
 server:
   port: 8081
+  error:
+    include-message: never
+    include-binding-errors: never
+    include-stacktrace: never
+    include-exception: false
+    whitelabel.enabled: false  # ← ADICIONADO AQUI
 
 spring:
   application:
-    name: usuario
+    name: usuario-service
+
   datasource:
     url: jdbc:mysql://localhost:3306/usuariojdbc?serverTimezone=America/Sao_Paulo
     username: root
     password: root
-    test-while-idle: true
-    validation-query: SELECT 1
     driver-class-name: com.mysql.cj.jdbc.Driver
-    oracleucp:
-      time-to-live-connection-timeout:
+
   jpa:
-    show-sql: false
     hibernate:
       ddl-auto: update
-      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+    show-sql: true
 
+  # Configurações do Spring Cloud
+  cloud:
+    discovery:
+      enabled: false
+    loadbalancer:
+      enabled: false
+    compatibility-verifier:
+      enabled: false
+
+# Desabilita completamente o cliente Eureka
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+    enabled: false
+    register-with-eureka: false
+    fetch-registry: false
+
+# Configurações de logging
+logging:
+  level:
+    org.springframework: DEBUG  # ← ALTERADO PARA DEBUG
+    com.flavio.microservice: DEBUG  # ← ADICIONADO DEBUG PARA SEU PACKAGE
+    com.flavio.microservice.usuario: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.web.servlet.mvc.method.annotation: DEBUG
+    org.springframework.web.bind.MethodArgumentNotValidException: TRACE
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: TRACE  # ← ADICIONADO

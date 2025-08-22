@@ -1,4 +1,4 @@
-package com.flavio.microservice.DTO;
+package com.flavio.microservice.usuario.DTO;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -9,15 +9,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class UsuarioForm {
 
-	@NotBlank @Size(min = 5)
+	@NotBlank(message = "O nome é obrigatório")
+    @Size(min = 5, message = "O nome deve ter pelo menos 5 caracteres")
 	private String nome;
-	@NotBlank @Size(min = 8)
+	
+	@NotBlank(message = "O email é obrigatório") 
+    @Size(min = 8, message = "O email deve ter pelo menos 8 caracteres")
 	private String email;
-	@NotBlank @Size(min = 5)
+	
+	@NotNull(message = "O campo ativo não pode ser nulo")
 	private Boolean ativo;
 	
 
