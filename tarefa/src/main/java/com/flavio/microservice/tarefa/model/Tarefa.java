@@ -40,6 +40,14 @@ public class Tarefa {
 //    @JoinColumn(name = "userId")
 //	private Usuario userId;
 	
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
 	public Tarefa() {
 		
 	}

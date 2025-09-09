@@ -16,7 +16,7 @@ public class TarefaForm {
 	private Long id;
 	private String titulo;
 	private String descricao;
-	private LocalDateTime dataKimite;
+	private LocalDateTime datalimite;
 	private Boolean concluida ;
 	private Prioridade prioridade;
     private Long userId;
@@ -56,11 +56,11 @@ public class TarefaForm {
 	}
 
 	public LocalDateTime getDataKimite() {
-		return dataKimite;
+		return datalimite;
 	}
 
 	public void setDataKimite(LocalDateTime dataKimite) {
-		this.dataKimite = dataKimite;
+		this.datalimite = dataKimite;
 	}
 
 	public Boolean getConcluida() {
@@ -81,7 +81,22 @@ public class TarefaForm {
 
 	public Tarefa converte() {
 		
-		return new Tarefa(id,titulo,descricao,dataKimite,concluida,prioridade,userId);
+		return new Tarefa(id,titulo,descricao,datalimite,concluida,prioridade,userId);
+	}
+
+	
+
+	public Tarefa atualizar(Tarefa tarefa) {
+		if (this.titulo != null) {
+	        tarefa.setTitulo(this.titulo);
+	    }
+	    if (this.descricao != null) {
+	        tarefa.setDescricao(this.descricao);
+	    }
+	    if (this.prioridade != null) {
+	        tarefa.setPrioridade(this.prioridade);
+	    }
+	    return tarefa;
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.flavio.microservice.tarefa.DTO;
 
-public class inforUsuarioDTO {
+public class InforUsuarioDTO {
 
 	private Long id;
 	private String nome;

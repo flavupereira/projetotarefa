@@ -42,14 +42,3 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
 
-# Configurações de logging
-logging:
-  level:
-    org.springframework: DEBUG  # ← ALTERADO PARA DEBUG
-    com.flavio.microservice: DEBUG  # ← ADICIONADO DEBUG PARA SEU PACKAGE
-    com.flavio.microservice.usuario: DEBUG
-    org.springframework.web: DEBUG
-    org.springframework.web.servlet.mvc.method.annotation: DEBUG
-    org.springframework.web.bind.MethodArgumentNotValidException: TRACE
-    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
-    org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: TRACE  # ← ADICIONADO
