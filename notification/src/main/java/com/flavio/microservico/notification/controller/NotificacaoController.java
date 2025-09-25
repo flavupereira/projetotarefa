@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.flavio.microservico.notification.DTO.NotificacaoDTO;
-import com.flavio.microservico.notification.model.Notaficacao;
+import com.flavio.microservico.notification.model.Notificacao;
 import com.flavio.microservico.notification.repository.NotificacaoRepository;
 
 @RestController
@@ -18,11 +18,11 @@ public class NotificacaoController {
 
 	@Autowired
 	private NotificacaoRepository notificacaoRepository;
-	private List<Notaficacao> tarefas;
+	private List<Notificacao> tarefas;
 
 	public List<NotificacaoDTO> listarNotificacao() {
 
-		List<Notaficacao> notificacaoes = notificacaoRepository.findAll();
+		List<Notificacao> notificacaoes = notificacaoRepository.findAll();
 
 		return notificacaoes.stream().map(NotificacaoDTO::new).collect(Collectors.toList());
 

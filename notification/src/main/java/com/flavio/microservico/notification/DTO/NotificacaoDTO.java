@@ -2,7 +2,7 @@ package com.flavio.microservico.notification.DTO;
 
 import javax.management.Notification;
 
-import com.flavio.microservico.notification.model.Notaficacao;
+import com.flavio.microservico.notification.model.Notificacao;
 
 public class NotificacaoDTO {
 
@@ -14,7 +14,7 @@ public class NotificacaoDTO {
 	
 	}
 
-	public NotificacaoDTO(Notaficacao notificacao) {
+	public NotificacaoDTO(Notificacao notificacao) {
 		notificacao.setUserId(this.userId);
 		notificacao.setMensagem(this.mensagem);
 	}

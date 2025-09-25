@@ -16,6 +16,7 @@ import com.flavio.microservice.tarefa.DTO.TarefaForm;
 import com.flavio.microservice.tarefa.DTO.InforUsuarioDTO;
 import com.flavio.microservice.tarefa.DTO.TarefaDTO;
 import com.flavio.microservice.tarefa.client.UsuarioCliente;
+import com.flavio.microservice.tarefa.componente.TaskEventPublisher;
 import com.flavio.microservice.tarefa.model.Tarefa;
 import com.flavio.microservice.tarefa.repository.TarefaRepository;
 
@@ -27,12 +28,21 @@ public class TarefaService {
 	private final UsuarioCliente usuarioClient;
 
 	private final TarefaRepository tarefaRepository;
+	
+	private final TaskEventPublisher taskEventPublisher; 
 
-	@Autowired
-	public TarefaService(UsuarioCliente usuarioClient, TarefaRepository tarefaRepository) {
+	
+	public TarefaService(UsuarioCliente usuarioClient, TarefaRepository tarefaRepository,
+			TaskEventPublisher taskEventPublisher) {
+	
 		this.usuarioClient = usuarioClient;
 		this.tarefaRepository = tarefaRepository;
+		this.taskEventPublisher = taskEventPublisher;
 	}
+
+
+
+
 
 	public Tarefa criaTarefa(TarefaForm tareFarom) {
 
@@ -50,10 +60,20 @@ public class TarefaService {
 		tarefa.setPrioridade(tareFarom.getPrioridade());
 		tarefa.setUserId(tareFarom.getUserId());
 
-		return tarefa;
+		Tarefa saved  = tarefaRepository.save(tarefa);
+		
+		 taskEventPublisher.publishTaskCreated(
+				 saved.getUserId(), 
+				 saved.getTitulo());
+		
+		return saved;
 
 	}
 
+	
+	
+	
+	
 	public List<TarefaDTO> buscaTarefas() {
 
 		List<Tarefa> tarefas = tarefaRepository.findAll();
