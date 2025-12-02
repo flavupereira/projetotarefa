@@ -13,7 +13,7 @@ public class NotificationConsumer {
 	@Autowired
 	private NotificationService notificationService;
 
-	@RabbitListener(queues = "notificacoes-queue")
+	@RabbitListener(queues = "notifications_queue")
 	public void receive(NotificacaoDTO mensagem) {
 		notificationService.saveNotification(mensagem);
 	}

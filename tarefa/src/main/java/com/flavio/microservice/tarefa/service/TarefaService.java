@@ -71,9 +71,6 @@ public class TarefaService {
 	}
 
 	
-	
-	
-	
 	public List<TarefaDTO> buscaTarefas() {
 
 		List<Tarefa> tarefas = tarefaRepository.findAll();
